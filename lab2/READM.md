@@ -58,4 +58,4 @@ Use safe system APIs (e.g., execFile instead of exec in Node.js).
 Apply input validation (whitelisting, escaping).
 
 🖼️ Screenshot
-![Blind OS Command Injection – Time Delay](https://github.com/Kabilala/OS-command-injection/blob/main/lab2.png?raw=true)
+![Blind OS Command Injection – Time Delay](https://github.com/Kabilala/OS-command-injection/lab2/lab2.png?raw=true)
