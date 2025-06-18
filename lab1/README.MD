@@ -83,6 +83,5 @@ This lab proves that without input validation, an attacker can easily **take con
 
 ## 🖼️ Screenshot
 
-C:\Users\Blkab\OneDrive\Bureau\shell-inje\lab1\lab1.png
-
+https://github.com/Kabilala/OS-command-injection/blob/main/lab1/lab1.png
 -
