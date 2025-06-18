@@ -8,13 +8,14 @@ This lab is vulnerable to blind OS command injection via the feedback form.
 
 The application executes a shell command based on submitted data but doesn't return the output.
 
-✅ Goal: Exploit the command injection to perform a time delay using ping, confirming code execution.
+✅ Goal: Exploit the injection to perform a time delay using ping, confirming code execution.
 
 🧪 Exploitation Strategy
 🧩 The Trick:
-Because it's blind, we can't see the output. So we use a time delay (like ping) to confirm our payload was executed.
+Because it's blind, we can't see the output.
+So we use a time delay (e.g., ping) to observe if the system waits, which confirms execution.
 
-📥 Intercepted Request (via Burp Suite)
+📥 Intercepted Request (Burp Suite)
 http
 Copy
 Edit
@@ -23,45 +24,38 @@ Host: [LAB_DOMAIN]
 Cookie: session=pKZ4noaM5dQpCAdmpBSs1eCJKla9waju
 Content-Type: application/x-www-form-urlencoded
 
-csrf=1fTchPuz1jar4RwGcM0foTEAyVb9rxhR&
+csrf=...&
 name=helio&
 email=ha||ping+-c+10+127.0.0.1||cer@gmail.com&
 subject=hello&
 message=hakennhu
-⏱️ When this request is sent, the response takes ~10 seconds, confirming that the ping command ran successfully.
+⏱️ The server responds after ~10 seconds — proof of command injection.
 
 🧠 Why This Works
-ping -c 10 127.0.0.1 makes the system wait around 10 seconds before continuing.
-
-Injecting it inside the email field using:
-
 bash
 Copy
 Edit
 ha||ping -c 10 127.0.0.1||cer@gmail.com
-chains the command before the email is processed.
+The injected ping command causes a deliberate delay.
+
+The shell executes the payload because the input is unsanitized.
 
 🔬 Root Cause
-The server-side logic concatenates the email input directly into a shell command.
+The app concatenates unvalidated user input into a shell command.
 
-There's no sanitization or escaping, so injected commands are executed by the shell.
+Lack of sanitization makes command injection trivial.
 
 ✅ Confirmation & Solution
-If the server pauses (i.e. takes noticeably longer to respond), it means the command was injected and executed.
+The delayed response confirms the command executed.
 
-✅ This confirms the vulnerability and solves the lab.
+This completes and solves the lab ✔️
 
 🛡️ Mitigation Strategies
-NEVER inject raw user input into shell commands.
+Avoid shell command concatenation with user input.
 
-Use safe APIs or proper command sanitization.
+Use safe system APIs (e.g., execFile instead of exec in Node.js).
 
-Implement input validation (e.g., regex or allow-list based).
+Apply input validation (whitelisting, escaping).
 
 🖼️ Screenshot
-(Insert a screenshot showing the slow server response or Burp timing — if you captured it)
-
-md
-Copy
-Edit
-![Blind OS Command Injection – Time Delay](https://github.com/kabilala/your_repo/blob/main/images/blind-os-injection-lab2.png?raw=true)
+![Blind OS Command Injection – Time Delay](https://github.com/Kabilala/OS-command-injection/blob/main/lab2.png?raw=true)
