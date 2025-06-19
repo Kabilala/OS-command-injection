@@ -64,7 +64,7 @@ The server concatenates the `email` input into a shell command. Since the input 
 
 ## 📸 Screenshot (Proof of Concept)
 
-![OOB Interaction Confirmed](https://github.com/Kabilala/OS-command-injection/blob/main/lab4/lab4.png
+![OOB Interaction Confirmed](https://github.com/Kabilala/OS-command-injection/blob/main/lab4/lab4.png)
 
 📍 The screenshot shows the DNS request received by `portswigguer`, confirming execution.
 
