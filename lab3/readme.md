@@ -95,7 +95,7 @@ Once the payload is sent:
 
 ### 🖼️ Screenshot
 
-![Blind OS Command Injection – Output Redirection](https://github.com/Kabilala/OS-command-injection/blob/main/lab3.png?raw=true)
+![Blind OS Command Injection – Output Redirection](https://github.com/Kabilala/OS-command-injection/blob/main/lab3/lab3.png)
 
 ---
 
